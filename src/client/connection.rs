@@ -95,7 +95,13 @@ where S: Body,
 
     /// Perform the HTTP/2.0 handshake, yielding a `Connection` on completion.
     pub fn handshake(io: T, executor: E) -> Handshake<T, E, S> {
-        Handshake::new(io, executor, &Builder::default())
+        Self::handshake_with_builder(io, executor, &Builder::default())
+    }
+
+    /// Perform the HTTP/2.0 handshake, yielding a `Connection` on completion. Takes a [Builder]
+    /// for configuration.
+    pub fn handshake_with_builder(io: T, executor: E, builder: &Builder) -> Handshake<T, E, S> {
+        Handshake::new(io, executor, builder)
     }
 }
 
