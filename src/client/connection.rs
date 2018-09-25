@@ -247,14 +247,6 @@ impl Error {
         }
     }
 
-    /// Returns true if the error contains an inner h2::Error
-    pub fn is_h2(&self) -> bool {
-        match self.kind {
-            Kind::Inner(_) => true,
-            _ => false,
-        }
-    }
-
     /// Returns h2::Error if the error contains an inner h2::Error
     pub fn get_h2(&self) -> Option<&h2::Error> {
         match self.kind {
